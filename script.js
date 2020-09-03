@@ -31,6 +31,7 @@ function newCard() {
     card.classList.toggle('newCard');
   }, 1500);
   setTimeout(selectRandomCard, 1500);
+
 }
 
 function flipCardIfFront() {
@@ -42,7 +43,9 @@ function discardCardIfBack() {
   card.classList.toggle('flip');
   card.classList.toggle('discard');
   newCard();
-  //card.classList.toggle('discard');
+  setTimeout(function(){
+    card.classList.toggle('discard');
+  }, 500);
 }
 
 
