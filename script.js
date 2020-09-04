@@ -1,71 +1,64 @@
-// MUTINY DRINKING GAME JS
+//--------------------- SPLASH SCREENS LOGIC -------------------------------
+
+//--------------------- GAME LOGIC STARTS HERE -------------------------
 
 //Variable list
-const crewScore = 0;
-const captScore = 0;
 const card = document.querySelector(".drinking-card");
 const cardfront = document.querySelector(".front-face");
 const cardback = document.querySelector(".back-face");
-var randomcard = document.getElementById("random-card");
 const crewScore_span = document.getElementById("crew-score"); //Använd dessa för att uppdatera score i html
 const captScore_span = document.getElementById("capt-score");
-const cardList = ['QUESTION CARD !<br/>Player gets a random pirate-related question.',
-                  'MUTINY !</br>There is a mutiny on board the ship. For the entire next round the captain is countered with every card.',
-                  'WATERFALL !<br/></br>Everybody finishes their drink one at a time starting from the captain. Deducts points from random players that were near drowning. YIKES!',
-                  'COUNTER CARD !</br>Player gets to counter a captain\'s card.',
-                  'DRINK CARD !</br>Player rolls two dice. The crew member takes X sips depending on the outcome.'];
 
 
-function selectNumberFromArray() {
+
+selectNumberFromArray = function() {
   const arrayNumber = Math.floor(Math.random()*5) //Antalet kort är 5
   return arrayNumber;
 }
 
-function selectCardUsingArray() {
-
-    randomcard.innerHTML = cardList[selectNumberFromArray()];
+addCrewScore = function() {
+  this.crewScore += 5000;
+  crewScore_span.innerHTML = this.crewScore;
+  return this.crewScore;
 }
 
+addCaptScore = function() {}
 
-function crewGetScore() {
-    crewScore++;
-  }
-
-
-function captGetScore() {
-  captScore++;
+newCard = function() {
+  setTimeout(function(){card.classList.toggle('newCard');}, 2000);
+  setTimeout(selectNumberFromArray, 2000);
 }
 
-
-
-
-function newCard() {
-  setTimeout(function(){
-    card.classList.toggle('newCard');
-  }, 1500);
-  setTimeout(selectCardUsingArray, 1500);
-
-}
-
-function flipCardIfFront() {
+flipCardIfFront = function() {
   card.classList.toggle('newCard');
   card.classList.toggle('flip');
+  return addCrewScore();
 }
 
-function discardCardIfBack() {
+discardCardIfBack = function() {
   card.classList.toggle('flip');
   card.classList.toggle('discard');
+  setTimeout(function(){card.classList.toggle('discard');}, 2000);
   newCard();
-  setTimeout(function(){
-    card.classList.toggle('discard');
-  }, 500);
+}
+
+gameStart = function(){
+  this.isMutinyRound = false;
+  this.crewScore = 0;
+  this.captScore = 0;
+  this.scoreToWin = 10000;
+  this.playerNameArray = ['Asta', 'Markus', 'Saida'];
+}
+
+gameLoop = function() {  //Game loop
+  gameStart();
+        if (this.crewScore < this.scoreToWin){
+          newCard();
+          cardfront.addEventListener('click', flipCardIfFront);
+          cardback.addEventListener('click', discardCardIfBack);
+          console.log(this.crewScore);
+        }
 }
 
 
-function main() {   // Game loop
-        newCard();
-        cardfront.addEventListener('click', flipCardIfFront);
-        cardback.addEventListener('click', discardCardIfBack);
-}
-
-main();
+gameLoop();
