@@ -74,19 +74,24 @@ color: white;
 text-align: center;
 }
 
+.crew-score {
+	font-size: 20px;
+}
+
 .cards {
-	position: absolute;
+	position: relative;
 	width: 360px;
 	height: 230px;
 	background: none;
+	align-items: center;
 	top: 50%;
 	left: 50%;
-	transform: translate( -50%, -50%);
+	transform: translate( -50%, 50%);
 }
 
 
 .drinking-card {
-	position: relative;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -156,20 +161,21 @@ text-align: center;
 	padding-top: 5px;
 	margin-bottom: -8px;
 	transform: scale(105%);
+	padding-top: 10px;
 }
 
 .front-face h2 {
 	font-size: 16px;
-	padding-bottom: 15px;
 	transform: scale(105%);
+	padding-bottom: 25px;
 }
-
 
 
 img{
 	width: 100px;
 	height: 80px;
 	transform: scale(105%);
+	margin-bottom: 8px;
 }
 
 

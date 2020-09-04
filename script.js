@@ -9,11 +9,11 @@ const cardback = document.querySelector(".back-face");
 var randomcard = document.getElementById("random-card");
 const crewScore_span = document.getElementById("crew-score"); //Använd dessa för att uppdatera score i html
 const captScore_span = document.getElementById("capt-score");
-const cardList = ['SKIP CARD !<br/>Player gets to skip their turn when used.',
-                  'MUTINY !</br>The player that gets this card will.. TBD',
-                  'WATERFALL !<br/></br>Everybody finishes their drink one at a time. Deducts points from random players.',
+const cardList = ['QUESTION CARD !<br/>Player gets a random pirate-related question.',
+                  'MUTINY !</br>There is a mutiny on board the ship. For the entire next round the captain is countered with every card.',
+                  'WATERFALL !<br/></br>Everybody finishes their drink one at a time starting from the captain. Deducts points from random players that were near drowning. YIKES!',
                   'COUNTER CARD !</br>Player gets to counter a captain\'s card.',
-                  'The crew member takes 3 sips.'];
+                  'Player throws two dices. The crew member takes X sips depending on.'];
 
 
 function selectNumberFromArray() {
