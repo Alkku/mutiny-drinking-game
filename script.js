@@ -13,7 +13,7 @@ const cardList = ['QUESTION CARD !<br/>Player gets a random pirate-related quest
                   'MUTINY !</br>There is a mutiny on board the ship. For the entire next round the captain is countered with every card.',
                   'WATERFALL !<br/></br>Everybody finishes their drink one at a time starting from the captain. Deducts points from random players that were near drowning. YIKES!',
                   'COUNTER CARD !</br>Player gets to counter a captain\'s card.',
-                  'Player throws two dices. The crew member takes X sips depending on.'];
+                  'DRINK CARD !</br>Player rolls two dice. The crew member takes X sips depending on the outcome.'];
 
 
 function selectNumberFromArray() {
