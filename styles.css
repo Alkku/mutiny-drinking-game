@@ -56,6 +56,7 @@ header > h2 {
 	}
 }
 
+
 .crew-member-names > h1 {
 	opacity: 0;
 	top: 50%;
@@ -110,11 +111,37 @@ header > h2 {
 	transform: scale(1.05)
 }
 
-.crew-member-names.visible {
+.crew-member-names.removeSplash {
 	position: fixed;
 	top: 100%;
 	left: 0;
 	opacity: 0;
+	width: 100%;
+	height: 100vh;
+	background: #24272E;
+	z-index: 100;
+	color: white;
+	text-align: center;
+}
+
+.end-game-screen {
+	position: fixed;
+	opacity: 0;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: #24272E;
+	z-index: 100;
+	color: white;
+	text-align: center;
+}
+
+.end-game-screen.addSplash {
+	position: fixed;
+	opacity: 1;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100vh;
 	background: #24272E;
