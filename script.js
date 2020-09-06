@@ -1,14 +1,14 @@
-//--------------------- SPLASH SCREENS LOGIC -------------------------------
+//--------------------- API TO TRIVIA GAME HERE -------------------------------
 
-//--------------------- GAME LOGIC STARTS HERE -----------------------------
+//--------------------- GAME LOGIC STARTS HERE --------------------------------
 //Variable list
-var cardList = [["QUESTION CARD !<br/>Player gets a random pirate-related question.", 2],
-                ["MUTINY !</br>There is a mutiny on board the ship. For the entire remainder of the round, the captain is countered with every card.", 1],
-                ["WATERFALL !<br/></br>Everybody finishes their drink one at a time starting from the captain. Deducts points from random players that were near drowning. YIKES!", 1],
-                ["COUNTER CARD !</br>Player gets to counter a captain\'s card.", 2],
-                ["DRINK CARD !", 4]];
+var cardList = [["❓</br>QUESTION CARD !<br/>Player gets a random trivia question.", 6],
+                ["⚔️</br>MUTINY !</br>There is a mutiny on-board the ship. For the remainder of this round, the captain is countered with every card.", 1],
+                ["🌊</br>BIG WAVE !<br/></br>Waterfall (lägg ett frågetecken så man vet va de e) starts from the Captain and continues in order: (array of players). Deducts points from random players that were near drowning. YIKES!", 1],
+                ["❌</br>COUNTER CARD !</br>Player gets to counter a captain\'s card.", 2],
+                ["DRINK CARD !", 8]];
 
-var mutinyRound = ["QUESTION CARD !<br/>Player gets a random pirate-related question.",
+var mutinyRound = ["QUESTION CARD !<br/>The Captain gets a random trivia question.",
                   "DRINK CARD !"];
 
 var questionCard = [];
@@ -45,13 +45,41 @@ inputNamesArray = function() { //This function takes the input of given names on
 chooseFirstCaptain = function() { //This function chooses the first captain for first round
     var randomNumber = Math.floor(Math.random() * playerNameArray.length+1);
     var captainInArrayNumber = randomNumber;
-    console.log(randomNumber);
     document.getElementById("display-captain").innerHTML = document.getElementById(randomNumber).innerHTML;
 }
 
 
 chooseCaptain = function() { //This function chooses the captain for rest of the rounds based on crew member with lowest score
-//Måst uppdateras baserat på filteredArray i chooseCrewMembers
+    var previousCaptain = document.getElementById("display-captain").innerHTML;
+    var possibleCaptains = [];
+
+    for (i=0; i < crewNamesInArray.length; i++) {
+      var fetchName = crewNamesInArray[i];
+      var idsScore = document.getElementById(fetchName).innerHTML;
+      var twoElementArray = [parseInt(idsScore), fetchName];
+      possibleCaptains.push(twoElementArray);
+    }
+
+    var sortedPossibleCaptains = possibleCaptains.sort();
+    var newCaptain = sortedPossibleCaptains[0];
+
+    console.log("Previous captain: " + previousCaptain);
+    console.log("New captain: " + newCaptain[1]);
+    console.log("Chosen crew members: " + crewNamesInArray);
+
+    document.getElementById("display-captain").innerHTML = newCaptain[1];
+    document.getElementById("display-next-captain").innerHTML = newCaptain[1];
+
+    crewNamesInArray.filter(function(e) { return e !== document.getElementById("display-captain").innerHTML });
+    document.getElementById("display-crew-members").innerHTML = "";
+
+
+
+
+    //window.crewNamesInArray = [];
+    //console.log(crewNamesInArray);
+
+
 }
 
 
@@ -66,6 +94,12 @@ chooseCrewMembers = function() { //This function chooses crew members based on p
         createParaForCM.setAttribute("id", i+1);
         createParaForCM.appendChild(insertFromArray);
         document.getElementById("display-crew-members").appendChild(createParaForCM);
+
+        var createSpanForCM = document.createElement('span');
+        var setScoreToZero = document.createTextNode("0");
+        createSpanForCM.setAttribute("id", crewNamesInArray[i]);
+        createSpanForCM.appendChild(setScoreToZero);
+        document.getElementById("display-crew-members").appendChild(createSpanForCM);
     }
 }
 
@@ -76,6 +110,7 @@ removeLastSplash = function() {
 
 removeEndSplash = function() {
     endSplash.classList.toggle('addSplash');
+
 }
 
 
@@ -83,6 +118,7 @@ startFirstGameButton.addEventListener('click', () => {
   removeLastSplash();
   gameStart();
   gameLoop();
+  window.firstGame = false;
 });
 
 restartGameButton.addEventListener('click', () => {
@@ -90,7 +126,6 @@ restartGameButton.addEventListener('click', () => {
   gameStart();
   gameLoop();
 });
-
 
 
 
@@ -103,15 +138,11 @@ selectCardToShow = function() {
   }
 
   var pickedCard = out[Math.floor(Math.random() * out.length)];
-  var firstPart = "Take ";
+  var firstPart = "🍻</br>Take ";
   var secondPart = " sips of your drink."
-  var oneSip = "Take one sip of your drink."
+  var oneSip = "🍻</br>Take one sip of your drink."
 
   if (pickedCard == "DRINK CARD !"){ // gör span för drink card o random sip amount
-    var img = document.createElement('img');
-    img.setAttribute('src', "images/pirate_swords.png");
-    document.getElementById("card-content").appendChild(img);
-
     amountOfSips = Math.floor(Math.random() * 10)+1;
     var newSentence = firstPart + amountOfSips + secondPart;
 
@@ -119,18 +150,12 @@ selectCardToShow = function() {
       document.getElementById("card-content").innerHTML = oneSip;
     } else {
       document.getElementById("card-content").innerHTML = newSentence;
-}
-
-
+    }
 
   } else {
     document.getElementById("card-content").innerHTML = pickedCard;
   }
 }
-  //document.getElementById("card-content").innerHTML = generateCard;
-
-  //om drink card => gör en string där du ändrar den. o sen random number av 12
-
 
 //questionCard = function() {
 //  const arrayNumber = Math.floor(Math.random()*5) //Antalet kort är 5
@@ -145,25 +170,34 @@ counterCard = function() {
 //kan man kalla på korten rakt inne i selectCardToShow?
 
 
-//Behövs desssa om scoring sker via kortens funktioner rakt?
-addCrewScore = function() {
-  this.crewScore += 1000;
-  crewScore_span.innerHTML = this.crewScore;
-  console.log(this.crewScore);
-  return this.crewScore;
+//Behövs desssa om scoring sker via kortens funktioner rakt?/
+
+//All player score functions below
+
+addCrewTotalScore = function() {
+  var whoseTurn = document.getElementById("crew-members-turn").innerHTML;
+  var currentScore = document.getElementById(whoseTurn).innerHTML;
+  var newPoints = 500;
+  var newCurrentScore = parseInt(currentScore) + newPoints; //lägg att kommer ur funktion
+  document.getElementById(whoseTurn).innerHTML = newCurrentScore;
+
+  this.crewTotScore += newPoints;
+  crewScore_span.innerHTML = this.crewTotScore;
+
+  return this.crewTotScore;
 }
 
 addCaptScore = function() {
   this.captScore += 1000;
   captScore_span.innerHTML = this.captScore;
-  console.log(this.captScore);
+
   return this.captScore;
 }
 
+//addCrewMemberScore
 
 
-
-
+//Turn-related functions below
 totalTurns = function() {
   this.turns += 1;
   document.getElementById("turns").innerHTML = this.turns;
@@ -183,7 +217,7 @@ playersTurn = function(decidePlayerTurn) { //This function decides the player tu
 
 
 
-
+//Game/card loop functions below
 newCard = function() {
   var isPlayerTurns = totalTurns();
   playersTurn(isPlayerTurns);
@@ -196,41 +230,49 @@ newCard = function() {
 flipCardIfFront = function() {
   card.classList.toggle('newCard');
   card.classList.toggle('flip');
+  addCrewTotalScore(crewTotScore);
+  addCaptScore(captScore);
+  //Lägg här att använda COUNTER KORT funktionen
+
 }
 
 discardCardIfBack = function() {
   card.classList.toggle('flip');
   card.classList.toggle('discard');
   setTimeout(function(){card.classList.toggle('discard');}, 2000);
+
   newCard();
-  addCrewScore(crewScore);
-  addCaptScore(captScore);
-  console.log(crewScore + captScore);
-  if (crewScore > 10000 || captScore > 10000) {
+
+
+  if (crewTotScore >= 1500 || captScore >= 1500) {
     gameEnd();
   }
 }
 
-//Losing team downs rest of drink
 
-
+//Game start/Game end/Game loop functions below
 gameStart = function(){
-  //if firstRound = then first captain
-  chooseFirstCaptain();
-  chooseCrewMembers();
+  console.log(firstGame);
+  if (firstGame == true){
+    chooseFirstCaptain();
+    chooseCrewMembers();
+}
   //this.isMutinyRound = false;
   crewScore_span.innerHTML = 0;
   captScore_span.innerHTML = 0;
+
   turns.innerHTML = 0;
-  this.crewScore = 0;
+  this.crewTotScore = 0;
   this.captScore = 0;
   this.turns = 0;
 }
 
 gameEnd = function(){
-  setTimeout(function(){endSplash.classList.toggle('addSplash');}, 1500);
   card.classList.toggle('newCard');
-  var crewNamesInArray = [];
+  chooseCaptain();
+  chooseCrewMembers();
+  setTimeout(function(){endSplash.classList.toggle('addSplash');}, 1000);
+  //var crewNamesInArray = [];
 }
 
 gameLoop = function() {  //Game loop

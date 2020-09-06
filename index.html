@@ -3,12 +3,15 @@
 	<head>
 			<meta charset="utf-8">
 			<title>Mutiny | Drinking Game</title>
+			<link rel="icon" type="image/x-icon" href="images/pirateIcon?v=2" />
 			<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
 		<header>
-			<h1>MUTINY</h1>
-			<h2>DRINKING GAME</h2>
+			<h1>M U T I N Y</h1>
+			<hr style="position:relative;width:21%;height:3px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
+border-top: 1px solid black">
+			<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
 		</header>
 
 		<div class="crew-member-names">
@@ -21,19 +24,19 @@
 		</div>
 
 		<div class="end-game-screen">
-			<h1>YARR! RESTART GAME? New captain will be: <h1>
+			<h1>YARR! CAPTAIN/CREW MEMBER WINS! RESTART GAME? Player X wins. Crew member X had the lowest score and will be the new captain will be: <span id="display-next-captain"></span></h1>
 						<button id="restart-game-button"  type="button">Restart game</button>
 		</div>
 
 
 
 		<div class="capt-score-board">
-			<h1>CAPTAIN SCORE</h1>
+			<h1>C A P T A I N&nbsp&nbsp&nbspS C O R E</h1>
 			<span id="capt-score">0</span>
 		</div>
 
 		<div class="crew-score-board">
-			<h1>CREW SCORE</h1>
+			<h1>C R E W&nbsp&nbsp&nbspS C O R E</h1>
 			<span id="crew-score">0</span>
 		</div>
 
@@ -47,8 +50,10 @@
 		<section class="cards">
 			<div class="drinking-card">
 					<div class="front-face">
-							<h1>MUTINY</h1>
-							<h2>DRINKING GAME</h2>
+							<h1>M U T I N Y</h1>
+							<hr style="position:relative;width:50%;height:2px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
+    border-top: 1px solid black">
+							<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
 							<img class="front-face-skull" src="images/pirate_swords.png">
 					</div>
 
@@ -56,7 +61,6 @@
 					</div>
 			</div>
 		</section>
-
 
 
 
@@ -77,15 +81,19 @@
 
 				<div class="chosen-captain">
 					<h1>CHOSEN CAPTAIN</h1>
-					<h2 id="display-captain"></h2>
+					<span id="display-captain"></span>
 				</div>
 		</div>
 
-				<div class="chosen-crew-members">
-					<h1>CHOSEN CREW MEMBERS</h1>
-					<h2 id="display-crew-members"></h2>
-				</div>
+
+
+		<div id="crew-members-list" class="chosen-crew-members-list">
+			<h1>CHOSEN CREW MEMBERS</h1>
+			<div id="display-crew-members" class="chosen-crew-members">
+
+			</div>
 		</div>
+
 
 
 <script src="script.js"></script>
