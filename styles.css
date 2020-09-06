@@ -161,6 +161,7 @@ header > h2 {
 }
 
 .end-game-screen > button {
+		margin-top: 5px;
 		opacity: 1;
 }
 

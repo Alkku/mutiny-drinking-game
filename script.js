@@ -2,10 +2,10 @@
 
 //--------------------- GAME LOGIC STARTS HERE --------------------------------
 //Variable list
-var cardList = [["❓</br>QUESTION CARD !<br/>Player gets a random trivia question.", 6],
-                ["⚔️</br>MUTINY !</br>There is a mutiny on-board the ship. For the remainder of this round, the captain is countered with every card.", 1],
-                ["🌊</br>BIG WAVE !<br/></br>Waterfall (lägg ett frågetecken så man vet va de e) starts from the Captain and continues in order: (array of players). Deducts points from random players that were near drowning. YIKES!", 1],
-                ["❌</br>COUNTER CARD !</br>Player gets to counter a captain\'s card.", 2],
+var cardList = [["QUESTION CARD !</br>❓<br/>Player gets a random trivia question.", 6],
+                ["MUTINY !</br>⚔️</br>There is a mutiny on-board the ship. For the remainder of this round, the captain is countered with every card.", 1],
+                ["BIG WAVE !</br>🌊<br/></br>Waterfall (lägg ett frågetecken så man vet va de e) starts from the Captain and continues in order: (array of players). Deducts points from random players that were near drowning. YIKES!", 1],
+                ["COUNTER CARD !</br>❌</br>Player gets to counter a captain\'s card.", 2],
                 ["DRINK CARD !", 8]];
 
 var mutinyRound = ["QUESTION CARD !<br/>The Captain gets a random trivia question.",
@@ -63,23 +63,10 @@ chooseCaptain = function() { //This function chooses the captain for rest of the
     var sortedPossibleCaptains = possibleCaptains.sort();
     var newCaptain = sortedPossibleCaptains[0];
 
-    console.log("Previous captain: " + previousCaptain);
-    console.log("New captain: " + newCaptain[1]);
-    console.log("Chosen crew members: " + crewNamesInArray);
-
     document.getElementById("display-captain").innerHTML = newCaptain[1];
     document.getElementById("display-next-captain").innerHTML = newCaptain[1];
-
     crewNamesInArray.filter(function(e) { return e !== document.getElementById("display-captain").innerHTML });
     document.getElementById("display-crew-members").innerHTML = "";
-
-
-
-
-    //window.crewNamesInArray = [];
-    //console.log(crewNamesInArray);
-
-
 }
 
 
@@ -244,7 +231,18 @@ discardCardIfBack = function() {
   newCard();
 
 
-  if (crewTotScore >= 1500 || captScore >= 1500) {
+  if (captScore >= 1500) {
+    var captainWinsString = "Y A R R !&nbsp&nbsp&nbspT H E&nbsp&nbsp&nbspC A P T A I N&nbsp&nbsp&nbspW I N S ! 🦜";
+    var crewLosesString = "Everyone in the crew must finish up the drinks they are holding."
+    document.getElementById("winning-side").innerHTML = captainWinsString;
+    document.getElementById("losing-side").innerHTML = crewLosesString;
+    gameEnd();
+
+  } else if (crewTotScore >= 1500) {
+    var crewWinsString = "Y A R R !&nbsp&nbsp&nbspT H E&nbsp&nbsp&nbspC R E W&nbsp&nbsp&nbspW I N S ! 🏴‍☠️";
+    var captainLosesString = "The captain has to finish up the drink he/she is holding.";
+    document.getElementById("winning-side").innerHTML = crewWinsString;
+    document.getElementById("losing-side").innerHTML = captainLosesString;
     gameEnd();
   }
 }
@@ -268,6 +266,7 @@ gameStart = function(){
 }
 
 gameEnd = function(){
+
   card.classList.toggle('newCard');
   chooseCaptain();
   chooseCrewMembers();
