@@ -128,6 +128,64 @@ header > h2 {
 	text-align: center;
 }
 
+
+.question-card-splash {
+	position: fixed;
+	opacity: 0;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: #24272E;
+	z-index: 100;
+	color: white;
+	text-align: center;
+}
+
+.question-card-splash.questionCardSplash {
+	position: fixed;
+	opacity: 0.98;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: #24272E;
+	z-index: 100;
+	color: white;
+	text-align: center;
+	text-align: center;
+}
+
+
+.question-card-splash-two {
+	position: fixed;
+	opacity: 0;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: #24272E;
+	z-index: 100;
+	color: white;
+	text-align: center;
+}
+
+.question-card-splash-two.questionCardSplashTwo {
+	position: fixed;
+	opacity: 0.98;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: #24272E;
+	z-index: 100;
+	color: white;
+	text-align: center;
+	text-align: center;
+}
+
+
+
 .end-game-screen {
 	position: fixed;
 	opacity: 0;

@@ -9,7 +9,7 @@
 	<body>
 		<header>
 			<h1>M U T I N Y</h1>
-			<hr style="position:relative;width:21%;height:3px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
+			<hr style="position:relative;width:380px;height:3px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
 border-top: 1px solid black">
 			<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
 		</header>
@@ -23,6 +23,20 @@ border-top: 1px solid black">
 			</div>
 		</div>
 
+	<div class="question-card-splash">
+			<h1 id="question-from-api">Yolo</h1>
+			<h2 id="answer-from-api"></h2>
+			<button id="true-answer"  onclick="questionScreenSplashTwo();" type="button">T R U E</button>
+			<button id="false-answer"  type="button">F A L S E</button>
+	</div>
+	<div class="question-card-splash-two">
+			<h1>The answer is incorrect! Take 5 sips. Captain gets points.</h1>
+			<h1>The answer is correct!</h1>
+			<button id="continue"  onclick="questionScreenSplashThree();" type="button">Click here to continue.</button>
+	</div>
+
+
+
 		<div class="end-game-screen">
 			<h1 id="winning-side"></h1>
 			<h2 id="losing-side"></h2>
@@ -32,6 +46,9 @@ border-top: 1px solid black">
 		</div>
 
 
+		<div class="set-winning-score">
+				<h1>First to reach X points win -> Detta bestäms på basis av spelare * 10000</h1>
+		</div>
 
 		<div class="capt-score-board">
 			<h1>C A P T A I N&nbsp&nbsp&nbspS C O R E</h1>
