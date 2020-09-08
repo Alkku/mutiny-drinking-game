@@ -47,7 +47,7 @@ border-top: 1px solid black">
 
 
 		<div class="set-winning-score">
-				<h1>First to reach X points win -> Detta bestäms på basis av spelare * 10000</h1>
+				<h1>First side to reach <span id="score-to-reach"></span> points wins.</h1>
 		</div>
 
 		<div class="capt-score-board">
@@ -65,7 +65,7 @@ border-top: 1px solid black">
 		</div>
 
 		<div class="mutiny-round">
-			<span id="mutiny-round-ends"></span>
+			<span id="mutiny-round-ends">0</span>
 		</div>
 
 
@@ -85,7 +85,10 @@ border-top: 1px solid black">
 			</div>
 		</section>
 
-
+		<div class="counter-card-button-div">
+			<h1>PASS CARD TO CAPTAIN</h1>
+		<button id="counter-card-button" onclick="useCounterCard();" type="button">Press here</button>
+	</div>
 
 		<div class="game-parameters">
 				<div class="total-players">

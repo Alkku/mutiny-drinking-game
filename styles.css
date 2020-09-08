@@ -248,6 +248,24 @@ text-align: center;
 	margin-bottom: -100px;
 }
 
+.counter-card-button-div {
+	opacity: 0;
+	position: relative;
+	margin-top: 130px;
+	text-align: center;
+	font-size: 15px;
+}
+
+.counter-card-button-div.makeVisible {
+	opacity: 1;
+	position: relative;
+	margin-top: 130px;
+	text-align: center;
+	font-size: 15px;
+}
+
+
+
 .game-parameters {
 	opacity: 1;
 	position: relative;
@@ -280,6 +298,10 @@ text-align: center;
 	transform: scale(0.1);
 }
 
+.drinking-card.flipThreeSixty {
+	opacity:1;
+	transform: rotateY(180deg);
+}
 
 .drinking-card.newCard {
 	width: 100%;
