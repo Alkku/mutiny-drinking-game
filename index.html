@@ -10,9 +10,46 @@
 		<header>
 			<h1>M U T I N Y</h1>
 			<hr style="position:relative;width:380px;height:3px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
-border-top: 1px solid black">
+				border-top: 1px solid black">
 			<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
 		</header>
+
+		<div class="welcome-splash">
+			<button id="welcome-full-screen-button" onclick="removeWelcomeSplash();" type="button">
+
+			<h1>M U T I N Y</h1>
+				<hr style="position:relative;height:3px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
+						border-top: 1px solid white">
+			<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
+						<img id="front-page-image" src="images/pirate_swords_white.png"></img>
+			<h3>Press anywhere to proceed.</h3>
+</button>
+		</div>
+
+
+		<div class="rules-splash">
+			<button id="rules-full-screen-button" onclick="removeRulesSplash();" type="button">
+
+			<p id="drinking-card-emoji">🍻</p>
+			<p id="drinking-card-first">Drink card</p>
+
+			<p id="question-card-second"></p>
+			<p id="question-card-emoji">❓</p>
+
+			<p id="counter-card-third"></p>
+			<p id="counter-card-emoji">❌</p>
+
+			<p id="mutiny-card-fourth"></p>
+			<p id="mutiny-card-emoji">⚔️</p>
+
+			<p id="big-wave-fifth"></p>
+			<p id="big-wave-emoji">🌊</p>
+
+			<h1>Press anywhere to proceed.</h3>
+
+			</button>
+		</div>
+
 
 		<div class="crew-member-names">
 			<h1>YARR! THIS IS YE CAP'N (captain_name) SPEAKING! 🏴‍☠️<h1>
@@ -20,6 +57,7 @@ border-top: 1px solid black">
  			<input type="text" id="crew-member-name" name="crew-members-name"><br><br>
 						<button id="start-game-button"  type="button">Start game</button>
 						<button id="add-crew-member-button" onclick="inputNamesArray();" type="button">Add crew member</button>
+						<p style="color:red" id="error-message"></p>
 			</div>
 		</div>
 
@@ -75,7 +113,7 @@ border-top: 1px solid black">
 					<div class="front-face">
 							<h1>M U T I N Y</h1>
 							<hr style="position:relative;width:50%;height:2px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
-    border-top: 1px solid black">
+    							border-top: 1px solid black">
 							<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
 							<img class="front-face-skull" src="images/pirate_swords.png">
 					</div>

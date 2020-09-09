@@ -36,7 +36,10 @@ var cardListNotWeighed = ["QUESTION CARD !</br>❓<br/><br/>Player gets a random
                           "DRINK CARD !",
                         ];
 
-
+const welcomeSplash = document.querySelector(".welcome-splash");
+const rulesSplash = document.querySelector(".rules-splash");
+const welcomeSplashScreen = document.getElementById("welcome-splash");
+const rulesSplashScreen = document.getElementById("rules-splash");
 const questionSplash = document.querySelector(".question-card-splash");
 const questionSplashTwo = document.querySelector(".question-card-splash-two");
 const nameSplash = document.querySelector(".crew-member-names");
@@ -47,27 +50,48 @@ const restartGameButton = document.getElementById("restart-game-button");
 let card = document.querySelector(".drinking-card");
 const cardfront = document.querySelector(".front-face");
 const cardback = document.querySelector(".back-face");
-const crewScore_span = document.getElementById("crew-score"); //Använd dessa för att uppdatera score i html
+const crewScore_span = document.getElementById("crew-score");
 const captScore_span = document.getElementById("capt-score");
+
 var playerNameArray = [];
 var crewNamesInArray = [];
 var chosenQuestion = [];
-var counterCardOwners = []; //ANVÄND FÖR COUNTER CARD
+var counterCardOwners = [];
 var firstGame = true;
 
+removeWelcomeSplash = function() {
+//  welcomeSplash.classList.toggle("removeWelcome");
+//  rulesSplash.classList.toggle("addRules");
+}
 
+removeRulesSplash = function() {
+//  rulesSplash.classList.toggle("addRules");
+//  nameSplash.classList.toggle('removeSplash');
+
+
+}
 //Functions below
 inputNamesArray = function() { //This function takes the input of given names on splash screen
       var inputText = document.getElementById("crew-member-name").value;
-      playerNameArray.push(inputText); //Antalet spelare enligt hur mycke läggs in i arrayen
-      document.getElementById("crew-member-name").value = ''; //reset value to '' of input text field
-      document.getElementById("all-players").innerHTML = playerNameArray.length;
-      //Gör ännu conditions här med if-statements för när ska accepteras med röd färg o annan font: inte tom, inte dubblett, måste vara minst 2 spelare -> de här måst kodas annanstans.
-      var createPara = document.createElement('p');
-      var insertInputText = document.createTextNode(inputText);
-      createPara.setAttribute("id", playerNameArray.length);
-      createPara.appendChild(insertInputText);
-      document.getElementById("add-player-names").appendChild(createPara);
+      var trimmedInputText = inputText.trim();
+
+      if (trimmedInputText === "") {
+          document.getElementById("error-message").innerHTML = "Name cannot be space.";
+          document.getElementById("crew-member-name").value = '';
+      } else if (playerNameArray.indexOf(inputText) !== -1) {
+          document.getElementById("error-message").innerHTML = "Name already exists.";
+          document.getElementById("crew-member-name").value = '';
+      } else if (playerNameArray.length === 0 || playerNameArray.indexOf(inputText) == -1){
+        document.getElementById("error-message").innerHTML = "";
+        playerNameArray.push(inputText);
+        document.getElementById("crew-member-name").value = ''; //reset value to '' of input text field
+        document.getElementById("all-players").innerHTML = playerNameArray.length;
+        var createPara = document.createElement('p');
+        var insertInputText = document.createTextNode(inputText);
+        createPara.setAttribute("id", playerNameArray.length);
+        createPara.appendChild(insertInputText);
+        document.getElementById("add-player-names").appendChild(createPara);
+      }
 }
 
 
@@ -120,6 +144,7 @@ chooseCrewMembers = function() { //This function chooses crew members based on p
 }
 
 
+
 removeLastSplash = function() {
     nameSplash.classList.toggle('removeSplash');
 }
@@ -131,10 +156,15 @@ removeEndSplash = function() {
 
 
 startFirstGameButton.addEventListener('click', () => {
+  if (playerNameArray.length < 2) {
+    document.getElementById("error-message").innerHTML = "Need at least 2 players.";
+    document.getElementById("crew-member-name").value = '';
+  } else {
     removeLastSplash();
     gameStart();
     gameLoop();
     window.firstGame = false;
+  }
 });
 
 restartGameButton.addEventListener('click', () => {
@@ -308,7 +338,6 @@ acquireCounterCard = function() {
 
 useCounterCard = function() {
     document.querySelector(".counter-card-button-div").classList.toggle('makeVisible');
-    //counterCardOwners.filter(function(e) { return e !== document.getElementById("crew-members-turn").innerHTML });
     const index = counterCardOwners.indexOf(document.getElementById("crew-members-turn").innerHTML);
     if (index > -1) {
       counterCardOwners.splice(index, 1)
@@ -317,11 +346,6 @@ useCounterCard = function() {
     let currentTurnNumberNew = document.getElementById("turns").innerHTML;
     let counterRoundEnds = parseInt(currentTurnNumberNew) + 2;
     document.getElementById("mutiny-round-ends").innerHTML = counterRoundEnds;
-
-    //card.classList.toggle('flip');
-    //card.classList.toggle('flipThreeSixty');
-
-
 
     var captainCounteredText = "🍻</br>Captain is countered and takes ";
     var captainCounteredText2nd = " sips.</br> Crew gets points. Cheers!"
@@ -358,8 +382,7 @@ addScoreToTotal = function() { //KOLLA EHTONA, FÖR MUTINY CARD E INT ANVÄND!!
             document.getElementById(whoseTurnNow).innerHTML = newCrewMemberScore;
             let crewNewScore = parseInt(crewScore_span.innerHTML) + (amountOfSips * 100);
             crewScore_span.innerHTML = crewNewScore;
-}
-
+          }
           break;
     }
 }
@@ -407,8 +430,6 @@ flipCardIfFront = function() {
     } else {
         card.classList.toggle('flip');
     }
-
-
 }
 
 //ÄNDRA HÄR FÖRE RELEASE 10000 * GÅNGER SPElARMÄNGDEN
@@ -462,15 +483,10 @@ gameStart = function(){
         chooseFirstCaptain();
         chooseCrewMembers();
     }
-    //window.mutinyRoundActive = false;
-    //window.counterCardActive = false;
     document.getElementById("score-to-reach").innerHTML = 1000 * (playerNameArray.length-1);
     crewScore_span.innerHTML = 0;
     captScore_span.innerHTML = 0;
     turns.innerHTML = 0;
-
-    //this.crewTotScore = 0;
-    //this.captScore = 0;
     this.turns = 0;
 }
 
@@ -484,7 +500,6 @@ gameEnd = function(){
 }
 
 gameLoop = function() {  //Game loop
-
           newCard();
           cardfront.addEventListener('click', flipCardIfFront);
           cardback.addEventListener('click', discardCardIfBack);
