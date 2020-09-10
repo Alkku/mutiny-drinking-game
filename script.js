@@ -22,18 +22,18 @@ useApiData = function(data){
 
 //--------------------- GAME LOGIC STARTS HERE --------------------------------
 //Variable list OBS OM ENA ÄNDRAS (CARDLIST), SÅ MÅST OCKSÅ ANDRA ÄNDRAS!!!!!!!
-var cardList = [["QUESTION CARD !</br>❓<br/><br/>Player gets a random trivia question.", 1],
-                ["MUTINY !</br>⚔️</br><br/>There is a mutiny on-board the ship. Next round, the captain is countered with every occuring drinking card, thus gaining the crew points.", 6],
-                ["BIG WAVE !</br>🌊<br/></br>Waterfall (lägg ett frågetecken så man vet va de e) starts from the Captain and continues in order: (array of players). Might deduct points from random players that were near drowning. YIKES!", 1],
-                ["COUNTER CARD !</br>❌</br><br/>Player gets to counter a captain\'s drinking card.", 6],
-                ["DRINK CARD !", 8],
+var cardList = [["</br>QUESTION CARD</br>❓<br/>Player gets a random trivia question.", 7],
+                ["MUTINY</br>⚔️<br/>There is a mutiny on-board the ship. Next round, the Captain is countered with every occuring drinking card, thus gaining the crew points.", 2],
+                ["BIG WAVE</br>🌊</br>Big wave starts from the Captain and continues with highest scored crew member to lowest (every player must drink). Might deduct points from random players.", 1],
+                ["</br>COUNTER CARD</br>❌<br/>Player gets to counter a Captain\'s drinking card.", 4],
+                ["DRINK CARD", 7],
               ];
 
-var cardListNotWeighed = ["QUESTION CARD !</br>❓<br/><br/>Player gets a random trivia question.",
-                          "MUTINY !</br>⚔️</br><br/>There is a mutiny on-board the ship. Next round, the captain is countered with every occuring drinking card, thus gaining the crew points.",
-                          "BIG WAVE !</br>🌊<br/></br>Waterfall (lägg ett frågetecken så man vet va de e) starts from the Captain and continues in order: (array of players). Might deduct points from random players that were near drowning. YIKES!",
-                          "COUNTER CARD !</br>❌</br><br/>Player gets to counter a captain\'s drinking card.",
-                          "DRINK CARD !",
+var cardListNotWeighed = ["</br>QUESTION CARD</br>❓<br/>Player gets a random trivia question.",
+                          "MUTINY</br>⚔️<br/>There is a mutiny on-board the ship. Next round, the Captain is countered with every occuring drinking card, thus gaining the crew points.",
+                          "BIG WAVE</br>🌊</br>Big wave starts from the Captain and continues with highest scored crew member to lowest (every player must drink). Might deduct points from random players that were near drowning. YIKES!",
+                          "</br>COUNTER CARD</br>❌<br/>Player gets to counter a Captain\'s drinking card.",
+                          "DRINK CARD",
                         ];
 
 const welcomeSplash = document.querySelector(".welcome-splash");
@@ -61,12 +61,12 @@ var firstGame = true;
 
 removeWelcomeSplash = function() {
 welcomeSplash.classList.toggle("removeWelcome");
-//  rulesSplash.classList.toggle("addRules");
+rulesSplash.classList.toggle("addRules");
 }
 
 removeRulesSplash = function() {
-//  rulesSplash.classList.toggle("addRules");
-//  nameSplash.classList.toggle('removeSplash');
+  rulesSplash.classList.toggle("addRules");
+  nameSplash.classList.toggle('removeSplash');
 
 
 }
@@ -86,6 +86,7 @@ inputNamesArray = function() { //This function takes the input of given names on
         playerNameArray.push(inputText);
         document.getElementById("crew-member-name").value = ''; //reset value to '' of input text field
         document.getElementById("all-players").innerHTML = playerNameArray.length;
+        document.getElementById("total-players-splash").innerHTML = playerNameArray.length;
         var createPara = document.createElement('p');
         var insertInputText = document.createTextNode(inputText);
         createPara.setAttribute("id", playerNameArray.length);
@@ -186,9 +187,9 @@ selectCardToShow = function() { // OBS!! ADDA MUTINY ROUND ACTIVE / COUNTER CARD
     console.log("Picked card: " + pickedCard);
     window.pickedCardNumber = cardListNotWeighed.indexOf(pickedCard);
     console.log("Picked card number: " + pickedCardNumber);
-    var firstPart = "🍻</br>Take ";
+    var firstPart = "</br>🍻</br>Take ";
     var secondPart = " sips of your drink.</br>Cheers!"
-    var oneSip = "🍻</br>Take one sip of your drink.</br>Cheers!"
+    var oneSip = "</br>🍻</br>Take one sip of your drink.</br>Cheers!"
 
     if (pickedCardNumber == 4){ // gör span för drink card o random sip amount
           window.amountOfSips = Math.floor(Math.random() * 6)+1;
@@ -283,16 +284,16 @@ questionScreenSplashThree = function() {
   var finalCaptScore = parseInt(captScore_span.innerHTML);
   var finalCrewScore = parseInt(crewScore_span.innerHTML);
 
-  if (finalCaptScore >= 1000  * crewNamesInArray.length) { //crewmemberarray.length * 10000
+  if (finalCaptScore >= 5000  * crewNamesInArray.length) {
     var captainWinsString = "Y A R R !&nbsp&nbsp&nbspT H E&nbsp&nbsp&nbspC A P T A I N&nbsp&nbsp&nbspW I N S ! 🦜";
     var crewLosesString = "Bottoms up, crew! Empty your drink."
     document.getElementById("winning-side").innerHTML = captainWinsString;
     document.getElementById("losing-side").innerHTML = crewLosesString;
     gameEnd();
 
-  } else if (finalCrewScore >= 1000  * crewNamesInArray.length) {
+  } else if (finalCrewScore >= 5000  * crewNamesInArray.length) {
     var crewWinsString = "Y A R R !&nbsp&nbsp&nbspT H E&nbsp&nbsp&nbspC R E W&nbsp&nbsp&nbspW I N S ! 🏴‍☠️";
-    var captainLosesString = "Bottoms up, captain! Empty your drink.";
+    var captainLosesString = "Bottoms up, Captain! Empty your drink.";
     document.getElementById("winning-side").innerHTML = crewWinsString;
     document.getElementById("losing-side").innerHTML = captainLosesString;
     gameEnd();
@@ -347,9 +348,10 @@ useCounterCard = function() {
     let counterRoundEnds = parseInt(currentTurnNumberNew) + 2;
     document.getElementById("mutiny-round-ends").innerHTML = counterRoundEnds;
 
-    var captainCounteredText = "🍻</br>Captain is countered and takes ";
+    var captainCounteredText = "</br>🍻</br>Captain is countered and takes ";
     var captainCounteredText2nd = " sips.</br> Crew gets points. Cheers!"
     let newSentenceCard = captainCounteredText + amountOfSips + captainCounteredText2nd;
+    document.getElementById("card-content").setAttribute("style", "color:red");
     document.getElementById("card-content").innerHTML = newSentenceCard;
 }
 
@@ -416,7 +418,7 @@ newCard = function() {
 flipCardIfFront = function() {
     card.classList.toggle('newCard');
     selectCardToShow();
-
+    document.getElementById("card-content").setAttribute("style", "color:black");
     if (pickedCardNumber == 4 &&
       parseInt(document.getElementById("turns").innerHTML) <
       parseInt(document.getElementById("mutiny-round-ends").innerHTML))
@@ -458,14 +460,14 @@ discardCardIfBack = function() {
   var finalCaptScore = parseInt(captScore_span.innerHTML);
   var finalCrewScore = parseInt(crewScore_span.innerHTML);
 
-  if (finalCaptScore >= 1000 * crewNamesInArray.length) { //crewmemberarray.length * 10000
+  if (finalCaptScore >= 5000 * crewNamesInArray.length) { //crewmemberarray.length * 10000
     var captainWinsString = "Y A R R !&nbsp&nbsp&nbspT H E&nbsp&nbsp&nbspC A P T A I N&nbsp&nbsp&nbspW I N S ! 🦜";
     var crewLosesString = "Bottoms up, crew! Empty your drink."
     document.getElementById("winning-side").innerHTML = captainWinsString;
     document.getElementById("losing-side").innerHTML = crewLosesString;
     gameEnd();
 
-  } else if (finalCrewScore >= 1000 * crewNamesInArray.length) {
+  } else if (finalCrewScore >= 5000 * crewNamesInArray.length) {
     var crewWinsString = "Y A R R !&nbsp&nbsp&nbspT H E&nbsp&nbsp&nbspC R E W&nbsp&nbsp&nbspW I N S ! 🏴‍☠️";
     var captainLosesString = "Bottoms up, Captain! Empty your drink.";
     document.getElementById("winning-side").innerHTML = crewWinsString;

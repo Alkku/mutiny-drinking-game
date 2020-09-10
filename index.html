@@ -9,7 +9,7 @@
 	<body>
 		<header>
 			<h1>M U T I N Y</h1>
-			<hr style="position:relative;width:380px;height:3px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
+			<hr style="position:relative;width:360px;height:3px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
 				border-top: 1px solid black">
 			<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
 		</header>
@@ -30,41 +30,53 @@
 			<button id="rules-full-screen-button" onclick="removeRulesSplash();" type="button">
 
 			<p id="drinking-card-emoji">🍻</p>
-			<p id="drinking-card-first">Drink card</p>
+			<p id="drinking-card-first">The drink card decides how many sips you have to take.</br>
+																	However, this card can be countered with a counter card in order to pass the drinks to the Captain.</br>
+																	Gives 100 points to the Captain per sip. Counter card gives 100 points per sip to crew member in turn.</p>
 
-			<p id="question-card-second"></p>
 			<p id="question-card-emoji">❓</p>
+			<p id="question-card-second">The question card generates a random question. The question can be of any random category. </br>
+																		The crew member must answer if the statement is true or false. Gives 500 points for correct answer. </br>
+																		Incorrect answer gives the Captain 300 points and you have to take 3 sips of your drink.</p>
 
-			<p id="counter-card-third"></p>
 			<p id="counter-card-emoji">❌</p>
+			<p id="counter-card-third">The counter card can be used to counter any drink card and pass it to the Captain instead. </br>
+																	The crew member in turn receives the points.</p>
 
-			<p id="mutiny-card-fourth"></p>
 			<p id="mutiny-card-emoji">⚔️</p>
+			<p id="mutiny-card-fourth">The mutiny card is valid for an entire round (every crew member's turn during one round). </br>
+																	During the mutiny round, the Captain is countered with every drink card picked up from the deck.</p>
 
-			<p id="big-wave-fifth"></p>
 			<p id="big-wave-emoji">🌊</p>
+			<p id="big-wave-fifth">The big wave card might deduct points (300 points) from random crew members. All the players (the crew and the Captain)</br>
+				must finish their drinks they are holding one by one starting from the Captain, following with the player with highest</br> score and ending with the player with the least points.</p>
 
-			<h1>Press anywhere to proceed.</h3>
+			<h1>Press anywhere to proceed.</h1>
 
 			</button>
 		</div>
 
 
 		<div class="crew-member-names">
-			<h1>YARR! THIS IS YE CAP'N (captain_name) SPEAKING! 🏴‍☠️<h1>
-			<h2>WHO OF YE LANDLUBBERS 'R GONNA SAIL WITH ME? (need list of array on page)</h2>
- 			<input type="text" id="crew-member-name" name="crew-members-name"><br><br>
-						<button id="start-game-button"  type="button">Start game</button>
-						<button id="add-crew-member-button" onclick="inputNamesArray();" type="button">Add crew member</button>
+			<p id="rect-captain"></p>
+			<img src="images/pirate_captain.png"></img>
+			<h1>AHOY!</br>MAY I ASK WHO YE BE, CAROUSER? </h1>
+ 			<input type="text" id="crew-member-name" name="crew-members-name" placeholder=" Input name here..."><br><br>
+						<button id="add-crew-member-button" onclick="inputNamesArray();" type="button">A D D&nbsp&nbsp&nbspC R E W&nbsp&nbsp&nbspM E M B E R</button>
+						<button id="start-game-button"  type="button">S T A R T&nbsp&nbsp&nbspG A M E</button>
 						<p style="color:red" id="error-message"></p>
+						<h2>Number of players: <span id="total-players-splash">0</span></h2>
 			</div>
 		</div>
 
 
 	<div class="question-card-splash">
+		<div class="align-question-answer">
+			<p id="question-mark">❓</p>
 			<h1 id="question-from-api"></h1>
 			<button id="true-answer" onclick="trueAnswer();" type="button">T R U E</button>
 			<button id="false-answer" onclick="falseAnswer();" type="button">F A L S E</button>
+		</div>
 	</div>
 
 	<div class="question-card-splash-two">
@@ -77,7 +89,7 @@
 		<div class="end-game-screen">
 			<h1 id="winning-side"></h1>
 			<h2 id="losing-side"></h2>
-			<h3>Crew member <span id="display-next-captain"></span> had the lowest score and will be the new captain next round.</h3>
+			<h3>Crew member <span style="color:red" id="display-next-captain"></span> had the lowest score and will be the new Captain next round.</h3>
 			<h4>Want to play again?</h5>
 						<button id="restart-game-button"  type="button">R E S T A R T&nbsp&nbsp&nbspG A M E</button>
 		</div>
@@ -97,13 +109,8 @@
 			<span id="crew-score">0</span>
 		</div>
 
-		<div class="display-turn">
-			<h1 id="span-color"><span id="crew-members-turn"></span>'s turn!</h1>
-		</div>
 
-		<div class="mutiny-round">
-			<span id="mutiny-round-ends">0</span>
-		</div>
+
 
 
 
@@ -111,7 +118,7 @@
 			<div class="drinking-card">
 					<div class="front-face">
 							<h1>M U T I N Y</h1>
-							<hr style="position:relative;width:50%;height:2px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
+							<hr style="position:relative;width:46%;height:2px;color:black;background-color:black;text-align:center;margin:auto;margin-bottom:20px;border: none;
     							border-top: 1px solid black">
 							<h2>D R I N K I N G&nbsp&nbsp&nbspG A M E</h2>
 							<img class="front-face-skull" src="images/pirate_swords.png">
@@ -123,9 +130,28 @@
 		</section>
 
 		<div class="counter-card-button-div">
-			<h1>PASS CARD TO CAPTAIN</h1>
-		<button id="counter-card-button" onclick="useCounterCard();" type="button">Press here</button>
+		<button id="counter-card-button" onclick="useCounterCard();" type="button">U S E&nbsp&nbsp&nbspC O U N T E R&nbsp&nbsp&nbspC A R D</button>
 	</div>
+
+
+
+	<div class="display-turn">
+		<h1 id="span-color"><span id="crew-members-turn"></span>'s turn!</h1>
+	</div>
+
+	<div class="chosen-captain">
+		<h1>CAPTAIN</h1>
+		<span id="display-captain"></span>
+	</div>
+
+	<div id="crew-members-list" class="chosen-crew-members-list">
+		<h1>CREW MEMBERS</h1>
+		<div id="display-crew-members" class="chosen-crew-members">
+
+		</div>
+	</div>
+
+
 
 		<div class="game-parameters">
 				<div class="total-players">
@@ -133,30 +159,23 @@
 					<span id="all-players"></span>
 				<div>
 
-				<div id="add-player-names" class="players-names">
-					<h1>PLAYERS NAMES' LIST</h1>
-				</div>
+					<div class="mutiny-round">
+						<span id="mutiny-round-ends">0</span>
+					</div>
 
 				<div class="total-turns">
 					<h1>TURNS</h1>
 					<span id="turns"></span>
 				</div>
 
-				<div class="chosen-captain">
-					<h1>CHOSEN CAPTAIN</h1>
-					<span id="display-captain"></span>
+				<div id="add-player-names" class="players-names">
+					<h1>PLAYERS NAMES' LIST</h1>
 				</div>
+
 		</div>
 
 
 
-
-		<div id="crew-members-list" class="chosen-crew-members-list">
-			<h1>CHOSEN CREW MEMBERS</h1>
-			<div id="display-crew-members" class="chosen-crew-members">
-
-			</div>
-		</div>
 
 
 
