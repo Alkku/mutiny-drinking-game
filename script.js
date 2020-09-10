@@ -223,7 +223,7 @@ trueAnswer = function() {
   chosenQuestion = [];
 
   if (answerPlayer != answerToQuestion) {
-      document.getElementById("answer-right-or-wrong").innerHTML = "The answer is incorrect! Take 3 sips of your drink.</br>Captain gets points.";
+      document.getElementById("answer-right-or-wrong").innerHTML = "The answer is incorrect!</br>Take 3 sips of your drink.</br>Captain gets points.";
       let currentCaptScore = document.getElementById("capt-score").innerHTML;
       let newCaptScore = parseInt(currentCaptScore) + 300;
       document.getElementById("capt-score").innerHTML = newCaptScore;
@@ -250,7 +250,7 @@ falseAnswer = function() {
     chosenQuestion = [];
 
     if (answerPlayer != answerToQuestion) {
-        document.getElementById("answer-right-or-wrong").innerHTML = "The answer is incorrect! Take 3 sips of your drink.</br>Captain gets points.";
+        document.getElementById("answer-right-or-wrong").innerHTML = "The answer is incorrect!</br>Take 3 sips of your drink.</br>Captain gets points.";
         let currentCaptScore = document.getElementById("capt-score").innerHTML;
         let newCaptScore = parseInt(currentCaptScore) + 300;
         document.getElementById("capt-score").innerHTML = newCaptScore;
