@@ -60,7 +60,7 @@ var counterCardOwners = [];
 var firstGame = true;
 
 removeWelcomeSplash = function() {
-//  welcomeSplash.classList.toggle("removeWelcome");
+welcomeSplash.classList.toggle("removeWelcome");
 //  rulesSplash.classList.toggle("addRules");
 }
 

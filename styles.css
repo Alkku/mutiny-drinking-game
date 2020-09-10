@@ -35,17 +35,134 @@ header > h2 {
 
 /* WELCOME SPLASH ANIMATIONS */
 .welcome-splash {
-	opacity: 1;
 	position: fixed;
-	background-color: black;
+	opacity: 1;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100vh;
 	background: #24272E;
 	z-index: 100;
-	color: #24272E;
+	color: white;
 	text-align: center;
+}
+
+
+.welcome-splash > button {
+	opacity: 1;
+	position: fixed;
+	background-color: white;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	padding: 0;
+	border: none;
+	background: none;
+	background: #24272E;
+	z-index: 100;
+	color: white;
+	text-align: center;
+}
+
+.welcome-splash > button > h1 {
+	position: absolute;
+	opacity: 0;
+	left: 50%;
+	top: 21%;
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	font-size: 800%;
+	transform: translate(-50%, -50%);
+	animation: bottomUp 1s ease-in forwards;
+	animation-delay: 2s;
+}
+
+.welcome-splash > button > h2 {
+	position: absolute;
+	opacity: 0;
+	left: 50%;
+	top: 24%;
+	text-align: center;
+	font-size: 300%;
+	transform: translate(-50%, -50%);
+	animation: topDown 1s ease-in forwards;
+	animation-delay: 2s;
+}
+
+@keyframes bottomUp {
+	0%{
+		opacity: 0;
+	}
+	60% {
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+		top: 17%;
+	}
+}
+
+@keyframes topDown {
+	0%{
+			opacity: 0;
+		}
+		60% {
+			opacity: 0;
+		}
+		100%{
+			top: 26.5%;
+			opacity: 1;
+		}
+}
+
+
+
+.welcome-splash > button > #line {
+	position: absolute;
+	opacity: 0;
+	top: 23%;
+	left: 50%;
+	width: 1px;
+	height: 2px;
+	background: white;
+	align-items: center;
+	font-weight: bold;
+	transform: translate(-50%, -50%);
+	animation: widenLine 1s;
+	animation-delay: 1.5s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes widenLine {
+	to{opacity: 1; transform: scaleX(430); }
+}
+
+
+.welcome-splash > button > img {
+	position: absolute;
+	opacity: 0;
+	width: 13%;
+ 	height: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	top: 45%;
+	display: block;
+	animation: InToOut 1s ease-in forwards;
+	animation-delay: 0.5s;
+}
+
+.welcome-splash > button > h3 {
+	position: absolute;
+	top: 77%;
+	left: 50%;
+	opacity: 0;
+	text-align: center;
+	font-size: 23px;
+	transform: translate(-50%, -50%);
+	animation: InToOut 1.2s ease-in infinite;
+	animation-delay: 4s;
 }
 
 .welcome-splash.removeWelcome {
@@ -62,9 +179,10 @@ header > h2 {
 }
 
 .welcome-splash.removeWelcome > button {
-	opacity: 1;
+	opacity: 0;
 	position: fixed;
-	top: 0;
+	background-color: white;
+	top: 100%;
 	left: 0;
 	width: 100%;
 	height: 100vh;
@@ -72,48 +190,8 @@ header > h2 {
 	z-index: 100;
 	color: #24272E;
 	text-align: center;
-	border: none;
-}
-/*
-.welcome-splash > button > img {
-	width: 12%;
- 	height: 21%;
-	display: inline-block;
-	padding-bottom: 20px;
-	animation: InToOut 1s ease-in forwards;
 }
 
-.welcome-splash > button > h1 {
-	opacity: 0;
-	text-align: center;
-	font-size: 100px;
-	animation: InToOut 1.5s ease-in forwards;
-	animation-delay: 1.5s;
-}
-
-.welcome-splash > hr {
-	opacity: 0;
-	width: 0;
-	animation: lineExpand 1.5  ease-in forwards;
-}
-
-.welcome-splash > button > h2 {
-	opacity: 0;
-	text-align: center;
-	margin-top: -12px;
-	font-size: 42px;
-	animation: InToOut 1.5s ease-in forwards;
-	animation-delay: 3s;
-}
-
-.welcome-splash > button > h3 {
-	margin-top: 240px;
-	opacity: 0;
-	text-align: center;
-	font-size: 23px;
-	animation: InToOut 1s ease-in infinite;
-	animation-delay: 5s;
-}
 
 @keyframes InToOut {
 	from {opacity: 0;}
@@ -125,7 +203,7 @@ header > h2 {
 	to {opacity: 0;}
 }
 
-*/
+/*
 
 .rules-splash {
 	opacity: 0;
